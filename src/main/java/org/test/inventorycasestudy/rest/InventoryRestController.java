@@ -21,7 +21,7 @@ public class InventoryRestController {
     }
 
     @PostMapping("create")
-    public ResponseEntity<Object> create(@RequestPart("data") CreateUpdateInv inventory, @RequestPart("gambarBarang") MultipartFile image) {
+    public ResponseEntity<Object> create(@RequestPart("data") CreateUpdateInv inventory, @RequestPart(value = "gambarBarang", required = false) MultipartFile image) {
         try {
             logger.info("/create params {}", inventory);
             return ResponseEntity.status(HttpStatus.CREATED).body(inventoryService.createUpdateInventory(inventory, image));
